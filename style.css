@@ -1,0 +1,18 @@
+:root {
+  --primary-300: #64C3BF;
+  --primary-500: #00807E;
+}
+.card-hover img {
+  transform: scale(1);
+  object-fit: cover;
+}
+.card-hover:hover img{
+  transform: scale(1.15);
+}
+.card-hover:hover .title{
+  color:var(--primary-300);
+  border-color: var(--primary-300)
+}
+.card-content {
+  height: calc(100% - 180px);
+}

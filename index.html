@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Travel</title>
+    <link rel="icon" href="/travel.ico" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/75fc65ab20.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            container: {
+              center: true,
+              padding: '0.75rem',
+            },
+            spacing: {
+              15: '60px',
+            },
+            colors: {
+              primary: {
+                300: '#64C3BF',
+                500: '#00807E',
+                600: 'rgba(0, 117, 114, 1)',
+              },
+              light: '#FAFAFA',
+              secondary: {
+                100: '#FAFAFA',
+                200: '#F7F7F7',
+                300: 'rgba(222, 226, 230, 1)',
+                400: 'rgba(0, 0, 0, 0.16)',
+                500: 'rgba(206, 212, 218, 1)',
+                600: 'rgba(129, 138, 145, 1)',
+              },
+              'light-gray': '#F7F7F7',
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body>
+    <div class="container py-[120px]">
+      <section class="w-5/6 mx-auto py-15 shadow rounded-md px-24">
+        <div class="flex">
+          <div class="w-1/2">
+            <img
+              src="https://github.com/hexschool/2022-web-layout-training/blob/main/js_week5/main_img.png?raw=true"
+              alt="travel main_img"
+            />
+            <img
+              src="https://github.com/hexschool/2022-web-layout-training/blob/main/js_week5/logo.png?raw=true"
+              alt="travel logo"
+            />
+          </div>
+          <form class="w-1/2">
+            <h1
+              class="font-bold border-primary-500 border-b-[3px] text-primary-500 text-2xl mb-9"
+            >
+              <span><i class="fas fa-plus-circle"></i></span>
+              新增旅遊套票
+            </h1>
+            <div class="flex space-y-6 flex-col">
+              <div class="flex space-x-8 items-center">
+                <label
+                  class="text-primary-500 font-medium flex-shrink-0"
+                  for="ticket_name"
+                  >套票名稱</label
+                >
+                <input
+                  data-ticket-name
+                  class="w-full bg-light border-transparent focus-within:ring-primary-500 focus-within:border-primary-500 border-primary-500 ring-primary-500"
+                  type="text"
+                  id="ticket_name"
+                  placeholder="請填寫套票名稱"
+                  required
+                />
+              </div>
+
+              <div class="flex space-x-8 items-center">
+                <label
+                  class="text-primary-500 font-medium flex-shrink-0"
+                  for="image_url"
+                  >圖片網址</label
+                >
+                <input
+                  data-image-url
+                  class="w-full bg-light border-transparent focus-within:ring-primary-500 focus-within:border-primary-500 border-primary-500 ring-primary-500"
+                  type="url"
+                  id="image_url"
+                  placeholder="請填寫圖片網址，格式須為 https://"
+                  pattern="https://.*"
+                  required
+                />
+              </div>
+
+              <div class="flex space-x-8 items-center">
+                <label
+                  class="text-primary-500 font-medium flex-shrink-0"
+                  for="area"
+                  >景點地區</label
+                >
+                <select
+                  data-area-select
+                  class="w-full bg-light border-transparent focus-within:ring-primary-500 focus-within:border-primary-500 border-primary-500 ring-primary text-secondary-600"
+                  type="text"
+                  id="area"
+                  required
+                ></select>
+              </div>
+
+              <div class="flex space-x-8 items-center">
+                <label
+                  class="text-primary-500 font-medium flex-shrink-0"
+                  for="ticket_price"
+                  >套票金額</label
+                >
+                <input
+                  data-price
+                  class="w-full bg-light border-transparent focus-within:ring-primary-500 focus-within:border-primary-500 border-primary-500 ring-primary"
+                  type="number"
+                  id="ticket_price"
+                  placeholder="請填寫套票金額"
+                  min="0"
+                  required
+                />
+              </div>
+
+              <div class="flex space-x-8 items-center">
+                <label
+                  class="text-primary-500 font-medium flex-shrink-0"
+                  for="ticket_num"
+                  >套票組數</label
+                >
+                <input
+                  data-ticket-num
+                  class="w-full bg-light border-transparent focus-within:ring-primary-500 focus-within:border-primary-500 border-primary-500 ring-primary"
+                  type="number"
+                  id="ticket_num"
+                  placeholder="請填寫套票組數"
+                  min="1"
+                  required
+                />
+              </div>
+
+              <div class="flex space-x-8 items-center">
+                <label
+                  class="text-primary-500 font-medium flex-shrink-0"
+                  for="ticket_rate"
+                  >套票星級</label
+                >
+                <input
+                  data-rate
+                  class="w-full bg-light border-transparent focus-within:ring-primary-500 focus-within:border-primary-500 border-primary-500 ring-primary"
+                  type="number"
+                  id="ticket_rate"
+                  placeholder="請填寫套票星級"
+                  min="1"
+                  max="10"
+                  required
+                />
+              </div>
+
+              <div class="flex space-x-8 items-center">
+                <label
+                  class="text-primary-500 font-medium flex-shrink-0"
+                  for="ticket_description"
+                  >套票描述</label
+                >
+                <textarea
+                  data-description
+                  class="h-[100px] w-full bg-light border-transparent focus-within:ring-primary-500 focus-within:border-primary-500 border-primary-500 ring-primary"
+                  type="text"
+                  id="ticket_description"
+                  placeholder="請填寫套票描述（限 100 字）"
+                  maxlength="100"
+                  required
+                ></textarea>
+              </div>
+              <div class="flex justify-end">
+                <button
+                  type="submit"
+                  class="bg-primary-500 text-white px-10 py-2.5 rounded disabled:opacity-80 disabled:text-gray-400"
+                >
+                  新增套票
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>
+    </div>
+    <section class="bg-light-gray py-14">
+      <div class="container">
+        <div class="flex mb-15 items-center space-x-8">
+          <select
+            name=""
+            id=""
+            class="ms-[8.3333%] w-1/4 block rounded border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-primary-500"
+            data-search-select
+          >
+            <option value="" selected disabled>地區搜尋</option>
+          </select>
+
+          <p class="hidden text-secondary-600">
+            本次搜尋共 <span data-search-num></span> 筆資料
+          </p>
+        </div>
+        <section data-list>
+          
+        </section>
+      </div>
+    </section>
+    <script src="index.js"></script>
+  </body>
+</html>
