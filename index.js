@@ -80,6 +80,47 @@ function disableSubmitBtn() {
   }
 }
 
+function makeAreaData (data) {
+  const obj = {};
+  data.forEach(item => {
+    if(!obj[item.area]) {
+      obj[item.area] = 1
+    } else {
+      obj[item.area] ++;
+    }
+
+  })
+  
+  return Object.entries(obj)
+}
+function makeDonutChart(data) {
+ const chartData = makeAreaData(data)
+c3.generate({
+  bindto: '#chart',
+  data: {
+      columns: chartData,
+      type : 'donut',
+  },
+  size: {
+    width: 200,
+    height: 200
+  },
+  color: {
+    pattern: ['#26C0C7', '#5151D3', '#E68618']
+  },
+  donut: {
+      title: "套票地區比重",
+      label: {
+        show: false
+      },
+      width: 16
+  }
+});
+
+
+
+}
+
 async function getData() {
   try {
     const response = await axios.get(
@@ -88,6 +129,7 @@ async function getData() {
     ticketData = response.data.data;
     initSelect(ticketData);
     renderData(ticketData);
+    makeDonutChart(ticketData)
   } catch (error) {
     console.log('error', error);
   }
@@ -110,7 +152,7 @@ form.addEventListener('submit', (e) => {
   const inputsValue = [...inputs].map((item) => item.value);
 
   const newData = {
-    id: data.length + 1,
+    id: ticketData.length + 1,
     name: inputsValue[0],
     imgUrl: inputsValue[1],
     area: areaSelect.value,
@@ -119,8 +161,9 @@ form.addEventListener('submit', (e) => {
     price: parseInt(inputsValue[2]),
     rate: parseInt(inputsValue[4]),
   };
-  data.push(newData);
-  renderData(data);
+  ticketData.push(newData);
+  renderData(ticketData);
+  makeDonutChart(ticketData)
   form.reset();
   disableSubmitBtn();
 });
@@ -128,8 +171,8 @@ form.addEventListener('submit', (e) => {
 areaSearchSelect.addEventListener('change', (e) => {
   const filterData =
     e.target.value === 'all'
-      ? data
-      : data.filter((item) => item.area === e.target.value);
+      ? ticketData
+      : ticketData.filter((item) => item.area === e.target.value);
   const searchDataNum = document.querySelector('[data-search-num]');
 
   renderData(filterData);
@@ -140,3 +183,15 @@ areaSearchSelect.addEventListener('change', (e) => {
 
 getData();
 disableSubmitBtn();
+
+function showError(e) {
+  console.log('e.target.node', e.target.nodeName)
+  const validateNode = ['INPUT', 'TEXTAREA', 'SELECT']
+  if(!validateNode.includes(e.target.nodeName)) return;
+  if(!e.target.value) {
+    e.target.parentNode.nextElementSibling.classList.add('visible')
+  } else {
+    e.target.parentNode.nextElementSibling.classList.remove('visible')
+  }
+}
+form.addEventListener('blur',showError,true)

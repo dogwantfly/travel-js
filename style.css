@@ -16,3 +16,6 @@
 .card-content {
   height: calc(100% - 180px);
 }
+.invalid-feedback {
+  visibility: hidden;
+}
